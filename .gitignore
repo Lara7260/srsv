@@ -1,0 +1,13 @@
+ .gitignore
+# ignoriraj sve
+*
+# osim mapa (da git ulazi u podmape)
+!**/
+# i osim izvornih kodova i traženih datoteka
+!.gitignore
+!*.c
+!*.h
+!*.txt
+!Makefile
+!makefile
+EOF
