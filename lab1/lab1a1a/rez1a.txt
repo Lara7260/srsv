@@ -1,0 +1,68 @@
+Input inp-1 (t0=10, T=100, C=10, D=50):
+nr_wakeups=64
+nr_OK_responses=63
+nr_LATE_responses=0
+nr_NO_responses=0
+response_avg=14
+response_min=14
+response_max=15
+reaction_avg=0
+reaction_min=0
+reaction_max=1
+
+Input inp-2 (t0=10, T=100, C=10, D=50):
+nr_wakeups=64
+nr_OK_responses=63
+nr_LATE_responses=0
+nr_NO_responses=0
+response_avg=28
+response_min=28
+response_max=30
+reaction_avg=14
+reaction_min=14
+reaction_max=15
+
+Input inp-3 (t0=10, T=100, C=10, D=50):
+nr_wakeups=64
+nr_OK_responses=63
+nr_LATE_responses=0
+nr_NO_responses=0
+response_avg=43
+response_min=42
+response_max=44
+reaction_avg=28
+reaction_min=28
+reaction_max=30
+
+Input inp-4 (t0=10, T=100, C=10, D=50):
+nr_wakeups=64
+nr_OK_responses=0
+nr_LATE_responses=63
+nr_NO_responses=0
+response_avg=57
+response_min=56
+response_max=58
+reaction_avg=43
+reaction_min=42
+reaction_max=44
+
+Overall stats:
+nr_wakeups=256
+nr_OK_responses=189
+nr_LATE_responses=63
+nr_NO_responses=0
+response_avg=35
+response_min=14
+response_max=58
+reaction_avg=21
+reaction_min=0
+reaction_max=44
+
+Opisati način povećanja opterećenja i koliko je opterećenje povećano:
+
+Pri simulaciji obrade povećala sam svima opterećenje za 30% [u kodu: msleep(inputs[i].C * 130/100);]. 
+Također sam povećala i broj zadataka na 4 (T = 100, D = 50, C = 10 => 13). Ulazi se obrađuju redom pa se 
+response povećava s položajem ulaza: prva 3 ulaza stižu na vrijeme, 4. kasni.
+Udio prekasno obrađenih zahtjeva računamo formulom: (nr_LATE_responses + nr_NO_responses)/nr_wakeups
+i kada uvrstim dobivene brojeve iz ispisa u jednadžbu dobivam (63 + 0)/256 = 0.2460937
+što je 24.61% i to je u rasponu 20-30%.

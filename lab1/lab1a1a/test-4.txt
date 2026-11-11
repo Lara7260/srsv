@@ -1,0 +1,31 @@
+#id	prio	first	T	C	D
+inp-1	1	10	100	10	50
+inp-2	1	10	100	10	50
+inp-3	1	10	100	10	50
+
+t	što procesor radi
+0	-
+10	PROMJENA inp-1
+10	PROMJENA inp-2
+10	PROMJENA inp-3
+10	inp-1 počinje obrada
+20	inp-1 gotov
+20	inp-2 počinje obrada
+30	inp-2 gotov
+30	inp-3 počinje obrada
+40	inp-3 gotov
+50	-
+60	-
+70	-
+80	-
+90	-
+100	-
+110	PROMJENA inp-1
+110	PROMJENA inp-2
+110	PROMJENA inp-3
+110	inp-1 počinje obrada
+120	inp-1 gotov
+120	inp-2 počinje obrada
+130	inp-2 gotov
+130	inp-3 počinje obrada
+140	inp-3 gotov

@@ -1,0 +1,33 @@
+#id	prio	first	T	C	D
+inp-1	1	10	100	60	50
+inp-2	1	10	100	60	50
+inp-3	1	10	100	20	100
+
+t	što procesor radi
+0	-
+10	PROMJENA inp-1
+10	PROMJENA inp-2
+10	PROMJENA inp-3
+10	inp-1 počinje obrada
+20	inp-1 (u obradi)
+30	inp-1 (u obradi)
+40	inp-1 (u obradi)
+50	inp-1 (u obradi)
+60	inp-1 (u obradi)
+60	   rok D prekoračen (inp-1)
+60	   rok D prekoračen (inp-2)
+70	inp-1 gotov
+70	inp-2 počinje obrada
+80	inp-2 (u obradi)
+90	inp-2 (u obradi)
+100	inp-2 (u obradi)
+110	PROMJENA inp-1
+110	rok D prekoračen (inp-3)
+110	(pojave inp-2 i inp-3 su propuštene, još su aktivni)
+110	inp-2 (u obradi)
+120	inp-2 (u obradi)
+130	inp-2 gotov
+130	inp-3 počinje obrada
+140	inp-3 (u obradi)
+150	inp-3 gotov
+150	inp-1 počinje obrada
