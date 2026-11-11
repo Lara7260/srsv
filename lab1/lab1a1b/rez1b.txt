@@ -1,0 +1,60 @@
+
+Input inp-1 (t0=10, T=100, C=10, D=50):
+nr_wakeups=52
+nr_OK_responses=52
+nr_LATE_responses=0
+nr_NO_responses=0
+response_avg=16
+response_min=13
+response_max=29
+reaction_avg=3
+reaction_min=0
+reaction_max=15
+
+Input inp-2 (t0=10, T=100, C=10, D=50):
+nr_wakeups=52
+nr_OK_responses=52
+nr_LATE_responses=0
+nr_NO_responses=0
+response_avg=29
+response_min=26
+response_max=42
+reaction_avg=16
+reaction_min=13
+reaction_max=29
+
+Input inp-3 (t0=10, T=100, C=10, D=50):
+nr_wakeups=52
+nr_OK_responses=52
+nr_LATE_responses=0
+nr_NO_responses=0
+response_avg=39
+response_min=39
+response_max=42
+reaction_avg=29
+reaction_min=26
+reaction_max=42
+
+Input inp-4 (t0=10, T=100, C=10, D=50):
+nr_wakeups=52
+nr_OK_responses=52
+nr_LATE_responses=0
+nr_NO_responses=0
+response_avg=33
+response_min=13
+response_max=41
+reaction_avg=29
+reaction_min=0
+reaction_max=41
+
+Overall stats:
+nr_wakeups=208
+nr_OK_responses=208
+nr_LATE_responses=0
+nr_NO_responses=0
+response_avg=29
+response_min=13
+response_max=42
+reaction_avg=20
+reaction_min=0
+reaction_max=42

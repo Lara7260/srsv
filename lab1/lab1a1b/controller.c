@@ -27,6 +27,9 @@ int main()
 	}
 	ii->pid_contr = getpid();
 
+	int *missed = calloc(nr_inputs, sizeof(int));
+	int critical = 0;        
+
 	struct sigaction act;
 	act.sa_handler = sigint_handler;
 	sigemptyset(&act.sa_mask);
@@ -74,21 +77,51 @@ int main()
 		for (int i = 0; i < nr_inputs && ii->simulation_stop == 0; i++) {
 			if (ii->input[i].request != ii->input[i].response){
             int request = ii->input[i].request;
-            clock_gettime(CLOCK_MONOTONIC, &ii->input[i].t_started);
-            pthread_mutex_unlock(&ii->lock);
-			   msleep(inputs[i].C);
-			   pthread_mutex_lock(&ii->lock);
-            ii->input[i].response = request;
-            clock_gettime(CLOCK_MONOTONIC, &ii->input[i].t_resp);
-            inputs_handled++;
-         }
+				if (critical && missed[i] == 0) {
+    				missed[i]++;
+    				continue;
+				}
+				struct timespec now;
+				clock_gettime(CLOCK_MONOTONIC, &now);
+				struct timespec tmp = now;
+            TIMESPEC_SUB(tmp, ii->input[i].t_req);
+            long elapsed = TIMESPEC_TO_MS(tmp);
+            int C_eff = inputs[i].C *130/100;
+				if(elapsed + C_eff > inputs[i].D){
+					ii->input[i].t_started = now;
+					ii->input[i].t_resp = now;
+					ii->input[i].response = request;
+					missed[i] ++;
+				}else{
+					clock_gettime(CLOCK_MONOTONIC, &ii->input[i].t_started);
+            	pthread_mutex_unlock(&ii->lock);
+			   	msleep(C_eff);
+			   	pthread_mutex_lock(&ii->lock);
+            	ii->input[i].response = request;
+            	clock_gettime(CLOCK_MONOTONIC, &ii->input[i].t_resp);
+            	inputs_handled++;
+					missed[i] = 0;
+				}	
+         }	
 		}
-
+		int max_missed = 0;
+		for (int j = 0; j < nr_inputs; j++)
+			if(missed[j] > max_missed)
+				max_missed = missed[j];
+		if(critical == 0 && max_missed >= 3){
+			critical = 1;
+			PRINTF("kriticni način rada\n");
+		}
+		else if(critical == 1 && max_missed <=2){
+			critical = 0;
+			PRINTF("normalni način rada\n");
+		}
 		if (inputs_handled == 0 && ii->simulation_stop == 0) { //if no requests, sleep 1 msec
 			pthread_mutex_unlock(&ii->lock);
 			msleep(1);
 			pthread_mutex_lock(&ii->lock);
 		}
+		
 	}
 
 	PRINTF("Controller ending\n");
